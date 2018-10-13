@@ -28,11 +28,6 @@ public class Frame extends JFrame implements ComponentListener {
 //		mainContent.setPreferredSize(mainContent.getPreferredSize());
 	}
 
-	public static void main(String[] args) {
-		Frame frame = new Frame();
-		frame.setVisible(true);
-	}
-
 	@Override
 	public void componentHidden(ComponentEvent e) {
 	}
