@@ -115,6 +115,15 @@ public class Field {
 		cp.add(queen.getImgLabel());
 	}
 
+	public boolean movePieceRegular(Position p1, Position p2) {
+		Piece p = field[p1.getX()][p1.getY()];
+		if (p == null)
+			return false;
+		if (p.getRegularMoves().contains(p2))
+			return movePiece(p1, p2);
+		return false;
+	}
+
 	public boolean movePiece(Position p1, Position p2) {
 		Piece p = field[p1.getX()][p1.getY()];
 
