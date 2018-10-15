@@ -15,17 +15,19 @@ public class Pawn extends Piece {
 	public List<Position> getMoves() {
 		List<Position> out = new ArrayList<Position>();
 		
-		int newY, newY2, startY;
+		int newY, newY2, startY, enPassantX;
 
 		if (color == Piece.BLACK) {
 			newY = position.getY() + 1;
 			newY2 = 3;
 			startY = 1;
+			enPassantX = 4;
 
 		} else {
 			newY = position.getY() - 1;
 			newY2 = 4;
 			startY = 6;
+			enPassantX = 3;
 		}
 
 		// Pawn is moving forward
@@ -50,7 +52,7 @@ public class Pawn extends Piece {
 	@Override
 	public Piece clone() {
 		Piece out = new Pawn(color, false);
-		out.setHasBeenMoved(this.getHasBeenMoved());
+		out.setMoveCounter(this.getMoveCounter());
 		return out;
 	}
 }

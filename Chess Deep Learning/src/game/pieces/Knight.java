@@ -37,7 +37,7 @@ public class Knight extends Piece {
 	@Override
 	public Piece clone() {
 		Piece out = new Knight(color, false);
-		out.setHasBeenMoved(this.getHasBeenMoved());
+		out.setMoveCounter(this.getMoveCounter());
 		return out;
 	}
 }

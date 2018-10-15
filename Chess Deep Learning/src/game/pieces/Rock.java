@@ -50,6 +50,6 @@ public class Rock extends Piece {
 	@Override
 	public Piece clone() {
 		Piece out = new Rock(color, false);
-		out.setHasBeenMoved(this.getHasBeenMoved());
+		out.setMoveCounter(this.getMoveCounter());
 		return out;	}
 }

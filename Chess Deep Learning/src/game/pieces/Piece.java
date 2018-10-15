@@ -26,14 +26,14 @@ public abstract class Piece {
 	protected Field field;
 	protected ImageLabel imgLabel;
 
-	private boolean hasBeenMoved;
+	private int moveCounter;
 	private int type;
 
 	public Piece(int color, int type, boolean createImgLabel, String fileName) {
 		position = new Position();
 		this.color = color;
 		this.type = type;
-		hasBeenMoved = false;
+		moveCounter = 0;
 
 		if (color == WHITE) {
 			enemyColor = BLACK;
@@ -106,11 +106,15 @@ public abstract class Piece {
 		return !(imgLabel == null);
 	}
 
-	public void setHasBeenMoved(boolean b) {
-		hasBeenMoved = b;
+	public void moveCounter() {
+		moveCounter++;
 	}
-
-	public boolean getHasBeenMoved() {
-		return hasBeenMoved;
+	
+	public void setMoveCounter(int mc) {
+		moveCounter = mc;
+	}
+	
+	public int getMoveCounter() {
+		return moveCounter;
 	}
 }

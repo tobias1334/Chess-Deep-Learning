@@ -31,7 +31,7 @@ public class King extends Piece {
 	@Override
 	public Piece clone() {
 		Piece out = new King(color, false);
-		out.setHasBeenMoved(this.getHasBeenMoved());
+		out.setMoveCounter(this.getMoveCounter());
 		return out;
 	}
 }
