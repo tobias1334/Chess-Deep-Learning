@@ -52,6 +52,8 @@ public class Bishop extends Piece {
 
 	@Override
 	public Piece clone() {
-		return new Bishop(color, false);
+		Piece out = new Bishop(color, false);
+		out.setHasBeenMoved(this.getHasBeenMoved());
+		return out;
 	}
 }

@@ -26,12 +26,14 @@ public abstract class Piece {
 	protected Field field;
 	protected ImageLabel imgLabel;
 
+	private boolean hasBeenMoved;
 	private int type;
 
 	public Piece(int color, int type, boolean createImgLabel, String fileName) {
 		position = new Position();
 		this.color = color;
 		this.type = type;
+		hasBeenMoved = false;
 
 		if (color == WHITE) {
 			enemyColor = BLACK;
@@ -102,5 +104,13 @@ public abstract class Piece {
 
 	public boolean availableImgLabel() {
 		return !(imgLabel == null);
+	}
+
+	public void setHasBeenMoved(boolean b) {
+		hasBeenMoved = b;
+	}
+
+	public boolean getHasBeenMoved() {
+		return hasBeenMoved;
 	}
 }

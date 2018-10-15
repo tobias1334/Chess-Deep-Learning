@@ -49,6 +49,7 @@ public class Rock extends Piece {
 	
 	@Override
 	public Piece clone() {
-		return new Rock(color, false);
-	}
+		Piece out = new Rock(color, false);
+		out.setHasBeenMoved(this.getHasBeenMoved());
+		return out;	}
 }

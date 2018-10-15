@@ -81,6 +81,8 @@ public class Queen extends Piece {
 	
 	@Override
 	public Piece clone() {
-		return new Queen(color, false);
+		Piece out = new Queen(color, false);
+		out.setHasBeenMoved(this.getHasBeenMoved());
+		return out;
 	}
 }

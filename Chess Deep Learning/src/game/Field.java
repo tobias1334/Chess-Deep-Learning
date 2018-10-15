@@ -142,6 +142,7 @@ public class Field {
 			field[p2.getX()][p2.getY()] = p;
 			field[p1.getX()][p1.getY()] = null;
 			p.setPosition(p2);
+			p.setHasBeenMoved(true);
 
 			// change turn
 			if (currentPlayer == Piece.WHITE)
