@@ -28,11 +28,13 @@ public abstract class Piece {
 
 	private int moveCounter;
 	private int type;
+	private boolean lastMoved;
 
 	public Piece(int color, int type, boolean createImgLabel, String fileName) {
 		position = new Position();
 		this.color = color;
 		this.type = type;
+		lastMoved = false;
 		moveCounter = 0;
 
 		if (color == WHITE) {
@@ -74,6 +76,14 @@ public abstract class Piece {
 
 	public int getType() {
 		return type;
+	}
+	
+	public void setLastMoved(boolean b) {
+		lastMoved = b;
+	}
+	
+	public boolean getLastMoved() {
+		return lastMoved;
 	}
 
 	public abstract List<Position> getMoves();

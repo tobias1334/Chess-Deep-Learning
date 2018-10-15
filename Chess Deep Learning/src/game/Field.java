@@ -115,6 +115,8 @@ public class Field {
 		cp.add(queen.getImgLabel());
 	}
 
+	// this method is needed to move a piece at the end. with this method you aren't
+	// allowed to move piece, which opens a king castled moved
 	public boolean movePieceRegular(Position p1, Position p2) {
 		Piece p = field[p1.getX()][p1.getY()];
 		if (p == null)
@@ -124,6 +126,7 @@ public class Field {
 		return false;
 	}
 
+	// this method is needed to calculate all possible moves
 	public boolean movePiece(Position p1, Position p2) {
 		Piece p = field[p1.getX()][p1.getY()];
 
@@ -132,11 +135,25 @@ public class Field {
 		if (p.getMoves().contains(p2) && p.getColor() == currentPlayer) { // check for legal move & only pieces with the
 																			// right color can be moved
 			Piece cp = field[p2.getX()][p2.getY()];
+
+			// en passant
+			if (p.getType() == Piece.PAWN && p1.getX() != p2.getX() && cp == null) {
+				int x = p2.getX();
+				int y = p2.getY() + ((p.getColor() == Piece.WHITE) ? 1 : -1);
+				cp = field[x][y];
+				field[x][y] = null;
+			}
+
 			if (cp != null) {
 				if (cp.availableImgLabel())
 					chessboardPanel.remove(cp.getImgLabel()); // remove castled piece
 				pieces.remove(cp);
 			}
+
+			// mark the last moved piece
+			for (Piece plm : pieces)
+				plm.setLastMoved(false);
+			p.setLastMoved(true);
 
 			// reposition piece
 			field[p2.getX()][p2.getY()] = p;

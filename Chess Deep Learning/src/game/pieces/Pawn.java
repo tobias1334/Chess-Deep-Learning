@@ -14,20 +14,22 @@ public class Pawn extends Piece {
 	@Override
 	public List<Position> getMoves() {
 		List<Position> out = new ArrayList<Position>();
-		
-		int newY, newY2, startY, enPassantX;
+
+		int newY, newY2, startY, enPassantY, enPassantY2;
 
 		if (color == Piece.BLACK) {
 			newY = position.getY() + 1;
 			newY2 = 3;
 			startY = 1;
-			enPassantX = 4;
+			enPassantY = 4;
+			enPassantY2 = 5;
 
 		} else {
 			newY = position.getY() - 1;
 			newY2 = 4;
 			startY = 6;
-			enPassantX = 3;
+			enPassantY = 3;
+			enPassantY2 = 2;
 		}
 
 		// Pawn is moving forward
@@ -46,9 +48,21 @@ public class Pawn extends Piece {
 			if (c == enemyColor)
 				out.add(new Position(x, newY));
 		}
+
+		// En Passant
+		if (position.getY() == enPassantY) {
+			for (int dx = -1; dx <= 1; dx += 2) {
+				int x = position.getX() + dx;
+				Piece p = field.getPiece(x, enPassantY);
+				if(p == null || p.getType() != Piece.PAWN)
+					continue;
+				if(p.getMoveCounter() == 1)
+					out.add(new Position(x, enPassantY2));
+			}
+		}
 		return out;
 	}
-	
+
 	@Override
 	public Piece clone() {
 		Piece out = new Pawn(color, false);
