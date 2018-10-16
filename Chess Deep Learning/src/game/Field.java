@@ -138,11 +138,11 @@ public class Field {
 	    King king = (King) p;
 	    if (king.getSpecialMoves().contains(p2)) {
 		Piece rock;
-		if (p2.getX() == 1) {
+		if (p2.getX() == 2) {
 		    rock = field[0][p2.getY()];
-		    rock.setPosition(2, p2.getY());
+		    rock.setPosition(3, p2.getY());
 		    field[0][p2.getY()] = null;
-		    field[2][p2.getY()] = rock;
+		    field[3][p2.getY()] = rock;
 
 		} else {
 		    rock = field[7][p2.getY()];

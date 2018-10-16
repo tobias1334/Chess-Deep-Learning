@@ -48,7 +48,7 @@ public class King extends Piece {
 	    if (rockL != null && rockL.getType() == Piece.ROCK && rockL.getMoveCounter() == 0) {
 		if (!(weakPositions.contains(new Position(1, weakY)) || weakPositions.contains(new Position(2, weakY))
 			|| weakPositions.contains(new Position(3, weakY)))) {
-		    out.add(new Position(1, weakY));
+		    out.add(new Position(2, weakY));
 		}
 	    }
 
