@@ -132,6 +132,33 @@ public class Field {
 
 	if (p == null) // no piece can't be moved
 	    return false;
+
+	// Rochade
+	if (p.getType() == Piece.KING) {
+	    King king = (King) p;
+	    if (king.getSpecialMoves().contains(p2)) {
+		Piece rock;
+		if (p2.getX() == 1) {
+		    rock = field[0][p2.getY()];
+		    rock.setPosition(2, p2.getY());
+		    field[0][p2.getY()] = null;
+		    field[2][p2.getY()] = rock;
+
+		} else {
+		    rock = field[7][p2.getY()];
+		    rock.setPosition(5, p2.getY());
+		    field[7][p2.getY()] = null;
+		    field[5][p2.getY()] = rock;
+		}
+
+		king.setPosition(p2);
+		field[p1.getX()][p1.getY()] = null;
+		field[p2.getX()][p2.getY()] = king;
+		king.moveCounter();
+		rock.moveCounter();
+	    }
+	}
+
 	if (p.getMoves().contains(p2) && p.getColor() == currentPlayer) { // check for legal move & only pieces with the
 									  // right color can be moved
 	    Piece cp = field[p2.getX()][p2.getY()];
@@ -142,30 +169,6 @@ public class Field {
 		int y = p2.getY() + ((p.getColor() == Piece.WHITE) ? 1 : -1);
 		cp = field[x][y];
 		field[x][y] = null;
-	    }
-
-	    // Rochade
-	    if (p.getType() == Piece.KING) {
-		King king = (King) p;
-		if (king.getSpecialMoves().contains(p2)) {
-		    Piece rock;
-		    if (p2.getX() == 1) {
-			rock = field[0][p2.getY()];
-			rock.setPosition(2, p2.getY());
-			field[0][p2.getY()] = null;
-			field[2][p2.getY()] = rock;
-
-		    } else {
-			rock = field[5][p2.getY()];
-			rock.setPosition(5, p2.getY());
-			field[7][p2.getY()] = null;
-			field[5][p2.getY()] = rock;
-		    }
-
-		    king.setPosition(p2);
-		    field[p1.getX()][p1.getY()] = null;
-		    field[p2.getX()][p2.getY()] = king;
-		}
 	    }
 
 	    if (cp != null) {

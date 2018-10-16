@@ -127,7 +127,7 @@ public class ChessboardPanel extends JPanel implements MouseListener, MouseMotio
 	public void mouseReleased(MouseEvent arg0) {
 		int x = arg0.getX() / diffSize;
 		int y = arg0.getY() / diffSize;
-
+				
 		if (choosenPosition.getX() >= 0 && choosenPosition.getY() >= 0)
 			field.movePieceRegular(choosenPosition, new Position(x, y));
 
